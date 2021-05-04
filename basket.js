@@ -4,19 +4,22 @@ let valueObjectProduit ={};
   valueObjectProduit= JSON.parse(localStorage.getItem("commande"));
 let compteurNombreDeCard = 0;
 let totalPrice = 0;
+let products = [];
+
 
 
 // Boucle pour créer les cards des produits sélectionné
 const showProduct = document.querySelector('.cardProduct');
-console.log(localStorage);
+console.log(valueObjectProduit[0].produit_id);
 
 for(let i =0; i <valueObjectProduit.length; i++){
      product();
      fillCardBasket();
      priceAllBasket();
+     products.push(valueObjectProduit[i].produit_id);
     compteurNombreDeCard++;
 };
-
+console.log(products);
 // -----Fonction création des cards------
 function product (){
   let newName = document.createElement('div');
@@ -63,43 +66,46 @@ function priceAllBasket(){
 }
 
 
-// ------Récuperation des infos du formulaire------
-let formObject = { 
-  nameUser:'',
-  fristNameUser: '',
-  mail:'',
+// ------Récuperation des infos du formulaire et tableau des produit_id------
+let contact = { 
+  firstName: '',
+  lastName:'',
+  address:'',
   city:'',
-  country:'',
+  email:'',
 }
+
 let validationTooltip01 = document.getElementById('validationTooltip01');
 let validationTooltip02 = document.getElementById('validationTooltip02');
 let validationTooltip03 = document.getElementById('validationTooltip03');
 let validationTooltip04 = document.getElementById('validationTooltip04');
 let validationTooltip05 = document.getElementById('validationTooltip05');
 
-formObject.nameUser = validationTooltip01.value;
-formObject.fristNameUser = validationTooltip02.value;
-formObject.mail = validationTooltip03.value;
-formObject.city = validationTooltip04.value;
-formObject.country = validationTooltip05.value;
-
-console.log(formObject);
+contact.firstName = validationTooltip01.value;
+contact.lastName = validationTooltip02.value;
+contact.address = validationTooltip04.value;
+contact.city = validationTooltip03.value;
+contact.email = validationTooltipUsername.value;
+console.log(contact);
 
 // -------Envoie du formulaire-------
-function envoieDuFormulair(e){
-document.getElementById(formValidation).addEventListener('click', function() {
- 
-  fetch('http://localhost:3000/api/teddies/post',{
-    method:"POST",
-    body: JSON.stringify(formObject),
-  })
-  .then(response => response.json())
-  .then(json => console.log(json))
-  .then(err => console.log(err));
-  e.preventDefault();
+document.getElementById('formValidation').addEventListener('submit', function(e) {
+  envoieDuFormulair();
 
-  });
-};
+  e.preventDefault();
+});
+
+  function envoieDuFormulair(){
+  fetch("http://localhost:3000/api/teddies/order",{
+      method:"POST",
+      body: JSON.stringify(contact, products),
+      headers: {"Content-type": "application/json"},
+    })
+    // .then(response => response.json())
+    // .then(json => console.log(json))
+    // .then(err => console.log(err));
+  };
+
 
 
 

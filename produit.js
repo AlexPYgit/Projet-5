@@ -66,14 +66,13 @@ let newName ="";
       
       nomberColors++
     };
-    
+
     // Ajouts de l'article dans le panier et choix de personalisation
     let personalisation = null;
     document.getElementById('formreq').addEventListener('change', function(e){
       personalisation = appel.value;
       e.preventDefault();
     });
-
 
 
     let produitInTheBasket = JSON.parse(localStorage.getItem("commande"));
@@ -85,8 +84,8 @@ let newName ="";
           price: (data.price/100),
           option: personalisation,
           image: data.imageUrl,
+          produit_id: data._id,
           };
-          
           //popup de confirmation d'ajout au pannier
           const confirmation = () =>{
             if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
@@ -97,7 +96,6 @@ let newName ="";
             };
           }
           
-
         //Si un produit est déjà dans le panier
         if(produitInTheBasket){
           produitInTheBasket.push(objectProduit);
