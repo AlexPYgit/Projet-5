@@ -36,6 +36,11 @@
     <div class="container cardProduct mt-5">
       <!-- carte de présentation de produit -->
       
+      <div id="showPrice" class=" d-flex flex-row bd-highlight  ">
+        <h3 class=" p-3">Montant total du panier</h3>
+        <div id="priceBasket" class="p-3 "style="font-weight: bold;">
+        </div>
+      </div>
     </div>
     <br>
     <!-- Bouton pour vider le panier -->
@@ -46,6 +51,63 @@
         <a  href="index.html" id="basket" class="btn "> < Retour aux produits</a>
       </div>
     </div>
+
+    <!-- Form -->
+    <div class="container mt-3 bg-dark ">
+      <form id="formValidation" class="row-6 g-3 needs-validation" novalidate>
+        <div class="col-md-4 position-relative">
+          <label for="validationTooltip01" class="form-label text-white">First name</label>
+          <input type="text" class="form-control" id="validationTooltip01" value="Mark" required>
+          <div class="valid-tooltip">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 position-relative">
+          <label for="validationTooltip02" class="form-label text-white">Last name</label>
+          <input type="text" class="form-control" id="validationTooltip02" value="Otto" required>
+          <div class="valid-tooltip">
+            Looks good!
+          </div>
+        </div>
+        <div class="col-md-4 position-relative">
+          <label for="validationTooltipUsername" class="form-label text-white">Username</label>
+          <div class="input-group has-validation">
+            <span class="input-group-text" id="validationTooltipUsernamePrepend">@</span>
+            <input type="text" class="form-control" id="validationTooltipUsername" aria-describedby="validationTooltipUsernamePrepend" required>
+            <div class="invalid-tooltip ">
+              Please choose a unique and valid username.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 position-relative">
+          <label for="validationTooltip03" class="form-label text-white">City</label>
+          <input type="text" class="form-control" id="validationTooltip03" required>
+          <div class="invalid-tooltip">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div class="col-md-3 position-relative">
+          <label for="validationTooltip04" class="form-label text-white">State</label>
+          <select class="form-select" id="validationTooltip04" required>
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+          </select>
+          <div class="invalid-tooltip">
+            Please select a valid state.
+          </div>
+        </div>
+        <div class="col-md-3 position-relative">
+          <label for="validationTooltip05" class="form-label text-white ">Zip</label>
+          <input type="text" class="form-control" id="validationTooltip05" required>
+          <div class="invalid-tooltip">
+            Please provide a valid zip.
+          </div>
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary m-2" type="submit">Submit form</button>
+        </div>
+      </form>
+  </div>
       
    
       <!-- Script du fichier JS -->

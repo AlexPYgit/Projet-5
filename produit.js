@@ -5,6 +5,8 @@
 const showProduct = document.querySelector('.cardProduct');
 let idProduit = window.location.search.slice(1);
 let idProd = idProduit;
+let newName ="";
+
 
   // Fonction de requête de l'API suivant le produit demandé
   function Product (idProduit){
@@ -13,7 +15,7 @@ let idProd = idProduit;
   .then(data => {
 
     //creéation de la card du produit sélectionné
-    let newName = document.createElement('div');
+     newName = document.createElement('div');
           newName.classList.add('card', 'mb-3');
           newName.style.width =  "540px";
           newName.innerHTML = '<div class="row g-0">\
@@ -72,31 +74,51 @@ let idProd = idProduit;
       e.preventDefault();
     });
 
+
+
+    let produitInTheBasket = JSON.parse(localStorage.getItem("commande"));
     const addBasket = document.getElementById('addBasket');
-
     // Création d'un objet qui va contenir les diférente info du produit.
-    //Et création de la key 'objetc' qui va s'incrémenter a chaque 
-      //ajout de produit dans le panier
-    let objectProduit = {};
-    let idProduit = 'idObject-' + idProd;
+      addBasket.addEventListener('click', function (e) {
+        let objectProduit = {
+          name : data.name,
+          price: (data.price/100),
+          option: personalisation,
+          image: data.imageUrl,
+          };
+          
+          //popup de confirmation d'ajout au pannier
+          const confirmation = () =>{
+            if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
+             Consultez le panier OK ou revenir à l'acceuil ANNULER`)){
+              window.location.href = 'basket.html';
+           } else{
+             window.location.href = 'index.html';
+            };
+          }
+          
 
-    addBasket.addEventListener('click', function (e) {
-      objectProduit.personalisation = personalisation;
-      objectProduit.idProd = idProd;
-      valObjectProduit= JSON.stringify(objectProduit);
-      localStorage.setItem(idProduit ,valObjectProduit);
-      console.log(localStorage);
+        //Si un produit est déjà dans le panier
+        if(produitInTheBasket){
+          produitInTheBasket.push(objectProduit);
+          localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
+           confirmation();
+        //si le produit n'est pas dans le panier
+        }else {
+          produitInTheBasket =[];
+          produitInTheBasket.push(objectProduit);
+          localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
+           confirmation();
+        };
+     
+        console.log(produitInTheBasket);
 
-       e.preventDefault();
-    });
+      
+        e.preventDefault();
+        });
 
-  });
-};
+     });
+ };
+
 Product();
-
-
   
-
-// ajouter plusieur produit au panier.
-//addMultiProduitInBasket
-   
