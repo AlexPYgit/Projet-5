@@ -1,4 +1,13 @@
 
+//---------------------------------------PARTIE CREATION DE LA PAGE PANIER---------------------------//
+
+// ------------------------VIDER LE PANIER---------------------------
+// vider le panier et recharger
+let clearBasket = document.getElementById('clearBasket');
+clearBasket.addEventListener('click', function(e){
+    localStorage.clear();
+});
+
 // Récupération des informations du localStorage.
 let valueObjectProduit ={};
 valueObjectProduit= JSON.parse(localStorage.getItem("commande"));
@@ -6,9 +15,20 @@ let compteurNombreDeCard = 0;
 let totalPrice = 0;
 let products = [];
 
-// Boucle pour créer les cards des produits sélectionné
+// Boucle pour créer les cards des produits sélectionnés
 const showProduct = document.querySelector('.cardProduct');
 
+  //---- Affichage si panier vide----
+  if(localStorage.length == 0){
+    showProduct.classList.add('invisible');
+    let showBasketEmpty = document.querySelector('.mt-5');
+    let basketEmpty = document.createElement('h1');
+    basketEmpty.innerText = 'est vide'; 
+    showBasketEmpty.appendChild(basketEmpty);
+    clearBasket.classList.add('invisible');
+}
+
+// -----Boucle pour créer le nombre de cards necessaire----
 for(let i =0; i <valueObjectProduit.length; i++){
      product();
      fillCardBasket();
@@ -36,7 +56,7 @@ function product (){
         </div>\
       </div>\ ';
       
-  // création de card
+  // -----création de card dans le html-----
   showProduct.appendChild(newName);
 };  
 
@@ -61,6 +81,7 @@ function priceAllBasket(){
   priceBasket.innerHTML = 'Prix :' + totalPrice + '€';
 }
 
+// ----------------------------------------------PARTIE POST SUR API------------------------------------//
 
 // ------Récuperation des infos du formulaire et tableau des produit_id------
 let contact = { 
@@ -83,18 +104,20 @@ contact.address = validationTooltip04.value;
 contact.city = validationTooltip03.value;
 contact.email = validationTooltipUsername.value;
 
+// ---objet envoyé à l'API---
 let data = {};
 data.contact = contact;
 data.products = products;
-console.log(data);
-// -------Envoie du formulaire-------
-document.getElementById('formValidation').addEventListener('submit', function(e) {
-  commande(data);
 
-  e.preventDefault();
+
+// -------Envoie du formulaire et redirection vers la page de confirmation-------
+document.getElementById('formValidation').addEventListener('click', function(e) {
+  commande(data);
+  let confirmation = document.getElementById('confirmation');
+  confirmation.href = 'confirmation.html';
 });
 
- // ---Soumission du formulaire et des id_produits
+ // ---Envoie de l'objet à l'API---
  const commande= async function(data) {
   let response = await fetch("http://localhost:3000/api/cameras/order", {
     method:"POST",
@@ -105,53 +128,32 @@ document.getElementById('formValidation').addEventListener('submit', function(e)
     body: JSON.stringify(data),
   })
    if(response.ok){
-     let res = response.json();
-     console.log(res);
+     let res = await response.json();
+     console.log(res.orderId)
+     console.log(totalPrice)
+
+     callCommandeUser(res);
+
    }else{
-     console.error('j\'ai une erreur :', response.status);
+     console.error('Une erreur : ', response.status,', c\'est produite.' );
    }
+
 };
+commande(data);
 
+let comandeUser = JSON.parse(localStorage.getItem("commande"));
+// function de récuération des infos commande pour la page de confirmation
+function callCommandeUser (res){
+  // objet récuperant l'orderId et le pix de la commande
+  let commandeUser = {
+    lasttName : res.contact.lasttName,
+    idCommande : res.orderId,
+    priceBasket: totalPrice,
+  };
+  localStorage.setItem('commande',JSON.stringify(commandeUser));  
 
-  
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// ------------------------VIDER LE PANIER---------------------------
-// vider le panier et recharger
-let clearBasket = document.getElementById('clearBasket');
-clearBasket.addEventListener('click', function(){
-    localStorage.clear();
-    product();
-});
-
-  // Affichage si panier vide
-  if(localStorage.length == 0){
-    showProduct.classList.add('invisible');
-    let showBasketEmpty = document.querySelector('.mt-5');
-    let basketEmpty = document.createElement('h1');
-    basketEmpty.innerText = 'est vide'; 
-    showBasketEmpty.appendChild(basketEmpty);
-    clearBasket.classList.add('invisible');
 }
+
+
+
+

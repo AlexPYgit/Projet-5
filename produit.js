@@ -74,7 +74,6 @@ let newName ="";
       e.preventDefault();
     });
 
-
     let produitInTheBasket = JSON.parse(localStorage.getItem("commande"));
     const addBasket = document.getElementById('addBasket');
     // Création d'un objet qui va contenir les diférente info du produit.
@@ -86,15 +85,16 @@ let newName ="";
           image: data.imageUrl,
           produit_id: data._id,
           };
-          //popup de confirmation d'ajout au pannier
-          const confirmation = () =>{
-            if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
-             Consultez le panier OK ou revenir à l'acceuil ANNULER`)){
-              window.location.href = 'basket.html';
-           } else{
-             window.location.href = 'index.html';
-            };
-          }
+
+         //popup de confirmation d'ajout au pannier
+         const confirmation = () =>{
+          if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
+           Consultez le panier OK ou revenir à l'acceuil ANNULER`)){
+            window.location.href = 'basket.html';
+         } else{
+            window.location.href = 'index.html';
+          };
+        };
           
         //Si un produit est déjà dans le panier
         if(produitInTheBasket){
@@ -107,10 +107,9 @@ let newName ="";
           produitInTheBasket.push(objectProduit);
           localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
            confirmation();
-        };
+        };         
      
         console.log(produitInTheBasket);
-
       
         e.preventDefault();
         });
