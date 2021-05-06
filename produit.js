@@ -10,7 +10,7 @@ let newName ="";
 
   // Fonction de requête de l'API suivant le produit demandé
   function Product (idProduit){
-      fetch('http://localhost:3000/api/teddies/' + idProd)
+      fetch('http://localhost:3000/api/cameras/' + idProd)
   .then(response => response.json())
   .then(data => {
 
@@ -53,16 +53,16 @@ let newName ="";
     textCard.innerHTML = data.description;
     priceCard.innerHTML = (data.price/100) +'€';
     image.src = data.imageUrl;
-    colors = data.colors;
+    lenses = data.lenses;
   
 // Boucle for qui ajoute le nombre d'option disponible
     let nomberColors = 0;
-    for(choice of data.colors){
+    for(choice of data.lenses){
       let choice = document.createElement('option');
       choice.innerHTML = '<option class=\'choice\' value=""></option>\ ';
       appel.appendChild(choice);
       let option = document.querySelectorAll('.choice');
-      option[nomberColors].innerHTML = colors[nomberColors];
+      option[nomberColors].innerHTML = lenses[nomberColors];
       
       nomberColors++
     };

@@ -9,7 +9,7 @@ const showProduct = document.querySelector('.cardProduct');
 
   // Fonction de requête de l'API pour l'afficher dans la page index.html
   function arrayProduct (){
-      fetch('http://localhost:3000/api/teddies')
+      fetch('http://localhost:3000/api/cameras')
   .then(response => response.json())
   .then(data => {
   

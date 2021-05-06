@@ -1,16 +1,13 @@
 
 // Récupération des informations du localStorage.
 let valueObjectProduit ={};
-  valueObjectProduit= JSON.parse(localStorage.getItem("commande"));
+valueObjectProduit= JSON.parse(localStorage.getItem("commande"));
 let compteurNombreDeCard = 0;
 let totalPrice = 0;
 let products = [];
 
-
-
 // Boucle pour créer les cards des produits sélectionné
 const showProduct = document.querySelector('.cardProduct');
-console.log(valueObjectProduit[0].produit_id);
 
 for(let i =0; i <valueObjectProduit.length; i++){
      product();
@@ -19,7 +16,6 @@ for(let i =0; i <valueObjectProduit.length; i++){
      products.push(valueObjectProduit[i].produit_id);
     compteurNombreDeCard++;
 };
-console.log(products);
 // -----Fonction création des cards------
 function product (){
   let newName = document.createElement('div');
@@ -86,25 +82,39 @@ contact.lastName = validationTooltip02.value;
 contact.address = validationTooltip04.value;
 contact.city = validationTooltip03.value;
 contact.email = validationTooltipUsername.value;
-console.log(contact);
 
+let data = {};
+data.contact = contact;
+data.products = products;
+console.log(data);
 // -------Envoie du formulaire-------
 document.getElementById('formValidation').addEventListener('submit', function(e) {
-  envoieDuFormulair();
+  commande(data);
 
   e.preventDefault();
 });
 
-  function envoieDuFormulair(){
-  fetch("http://localhost:3000/api/teddies/order",{
-      method:"POST",
-      body: JSON.stringify(contact, products),
-      headers: {"Content-type": "application/json"},
-    })
-    // .then(response => response.json())
-    // .then(json => console.log(json))
-    // .then(err => console.log(err));
-  };
+ // ---Soumission du formulaire et des id_produits
+ const commande= async function(data) {
+  let response = await fetch("http://localhost:3000/api/cameras/order", {
+    method:"POST",
+    headers: {
+      "Content-type": "application/json",
+      "Accept" : 'application/json'
+    },
+    body: JSON.stringify(data),
+  })
+   if(response.ok){
+     let res = response.json();
+     console.log(res);
+   }else{
+     console.error('j\'ai une erreur :', response.status);
+   }
+};
+
+
+  
+ 
 
 
 
