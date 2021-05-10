@@ -139,7 +139,7 @@ document.getElementById('formValidation').addEventListener('click', function(e) 
    }
 
 };
-commande(data);
+ commande(data);
 
 let comandeUser = JSON.parse(localStorage.getItem("commande"));
 // function de récuération des infos commande pour la page de confirmation

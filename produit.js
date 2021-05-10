@@ -87,29 +87,29 @@ let newName ="";
           };
 
          //popup de confirmation d'ajout au pannier
-         const confirmation = () =>{
-          if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
-           Consultez le panier OK ou revenir à l'acceuil ANNULER`)){
-            window.location.href = 'basket.html';
-         } else{
-            window.location.href = 'index.html';
-          };
-        };
+        //  const confirmation = () =>{
+        //   if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
+        //    Consultez le panier OK ou revenir à l'acceuil ANNULER`)){
+        //     window.location.href = 'basket.html';
+        //  } else{
+        //     window.location.href = 'index.html';
+        //   };
+        // };
           
         //Si un produit est déjà dans le panier
         if(produitInTheBasket){
           produitInTheBasket.push(objectProduit);
           localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
-           confirmation();
+          //  confirmation();
+
         //si le produit n'est pas dans le panier
         }else {
           produitInTheBasket =[];
           produitInTheBasket.push(objectProduit);
           localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
-           confirmation();
+          //  confirmation();
         };         
      
-        console.log(produitInTheBasket);
       
         e.preventDefault();
         });
@@ -118,4 +118,3 @@ let newName ="";
  };
 
 Product();
-  
