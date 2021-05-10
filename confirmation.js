@@ -1,8 +1,11 @@
 
-let storage =  JSON.parse(localStorage.getItem('commande'));
-let totalPrice = document.getElementById('totalPrice');
-let idCommande = document.getElementById('idCommande');
+let storageOfDataOfTheCustomerOrder =  JSON.parse(localStorage.getItem('commande'));
+let totalPriceCustomerOrder = document.getElementById('totalPrice');
+let idCommandeCustomerOrder = document.getElementById('idCommande');
 
-idCommande.innerHTML = storage.idCommande;
-totalPrice.innerHTML = storage.priceBasket + ' €';
+idCommandeCustomerOrder.innerHTML = storageOfDataOfTheCustomerOrder.idCommande;
+totalPriceCustomerOrder.innerHTML = storageOfDataOfTheCustomerOrder.priceBasket + ' €';
 
+
+import clearLocalStorageAfterSubmitOfTheForm from './libs/clearBasket.js';
+clearLocalStorageAfterSubmitOfTheForm();

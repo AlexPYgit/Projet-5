@@ -2,23 +2,23 @@
 
     //***** Début du programme******   
 
-const showProduct = document.querySelector('.cardProduct');
+const showProductInHtml = document.querySelector('.cardProduct');
 let idProduit = window.location.search.slice(1);
-let idProd = idProduit;
-let newName ="";
+let idProductForRequestApi = idProduit;
+let createCardProductForHtml ="";
 
 
   // Fonction de requête de l'API suivant le produit demandé
-  function Product (idProduit){
-      fetch('http://localhost:3000/api/cameras/' + idProd)
+  function getProductOfApi (idProduit){
+      fetch('http://localhost:3000/api/cameras/' + idProductForRequestApi)
   .then(response => response.json())
   .then(data => {
 
     //creéation de la card du produit sélectionné
-     newName = document.createElement('div');
-          newName.classList.add('card', 'mb-3');
-          newName.style.width =  "540px";
-          newName.innerHTML = '<div class="row g-0">\
+     createCardProductForHtml = document.createElement('div');
+          createCardProductForHtml.classList.add('card', 'mb-3');
+          createCardProductForHtml.style.width =  "540px";
+          createCardProductForHtml.innerHTML = '<div class="row g-0">\
             <div class="col-md-4">\
               <img class="rounded mx-auto d-block" style="width: 100%;" src="" id="image"></img>\
             </div>\
@@ -28,7 +28,7 @@ let newName ="";
                 <p id="description" class="card-text"></p>\
                 <p id="price" class="card-text"></p>\
                 <form id="formreq">\
-          <select placeholder="Choisissez" value="vfd" id="appel">\
+          <select placeholder="Choisissez" value="vfd" id="showTheOption">\
               <option value="" select="selected">--Please choose an option--</option>\
               </select>\
         </form>\
@@ -39,11 +39,11 @@ let newName ="";
         </div>\ ';
         
     // création de card
-    showProduct.appendChild(newName);
+    showProductInHtml.appendChild(createCardProductForHtml);
         
 
     //Ajout des info dans le cards
-    let appel = document.getElementById('appel');
+    let showTheOption = document.getElementById('showTheOption');
     let titleCard = document.querySelector("#title");
     let textCard = document.querySelector('#description');
     let priceCard = document.querySelector('#price');
@@ -56,21 +56,21 @@ let newName ="";
     lenses = data.lenses;
   
 // Boucle for qui ajoute le nombre d'option disponible
-    let nomberColors = 0;
+    let nomberOfOption = 0;
     for(choice of data.lenses){
       let choice = document.createElement('option');
       choice.innerHTML = '<option class=\'choice\' value=""></option>\ ';
-      appel.appendChild(choice);
+      showTheOption.appendChild(choice);
       let option = document.querySelectorAll('.choice');
-      option[nomberColors].innerHTML = lenses[nomberColors];
+      option[nomberOfOption].innerHTML = lenses[nomberOfOption];
       
-      nomberColors++
+      nomberOfOption++
     };
 
     // Ajouts de l'article dans le panier et choix de personalisation
-    let personalisation = null;
+    let personalisationOfProductWithOption = null;
     document.getElementById('formreq').addEventListener('change', function(e){
-      personalisation = appel.value;
+      personalisationOfProductWithOption = showTheOption.value;
       e.preventDefault();
     });
 
@@ -81,40 +81,27 @@ let newName ="";
         let objectProduit = {
           name : data.name,
           price: (data.price/100),
-          option: personalisation,
+          option: personalisationOfProductWithOption,
           image: data.imageUrl,
           produit_id: data._id,
           };
 
-         //popup de confirmation d'ajout au pannier
-        //  const confirmation = () =>{
-        //   if(window.confirm(`${objectProduit.name} option:${objectProduit.option} est bien ajouté au panier
-        //    Consultez le panier OK ou revenir à l'acceuil ANNULER`)){
-        //     window.location.href = 'basket.html';
-        //  } else{
-        //     window.location.href = 'index.html';
-        //   };
-        // };
-          
+      
         //Si un produit est déjà dans le panier
         if(produitInTheBasket){
           produitInTheBasket.push(objectProduit);
           localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
-          //  confirmation();
 
         //si le produit n'est pas dans le panier
         }else {
           produitInTheBasket =[];
           produitInTheBasket.push(objectProduit);
           localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
-          //  confirmation();
-        };         
-     
-      
+        };               
         e.preventDefault();
         });
 
      });
  };
 
-Product();
+ getProductOfApi();

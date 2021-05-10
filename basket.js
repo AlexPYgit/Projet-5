@@ -1,11 +1,12 @@
 
 //---------------------------------------PARTIE CREATION DE LA PAGE PANIER---------------------------//
+import clearLocalStorageAfterSubmitOfTheForm from './libs/clearBasket.js';
 
 // ------------------------VIDER LE PANIER---------------------------
 // vider le panier et recharger
 let clearBasket = document.getElementById('clearBasket');
 clearBasket.addEventListener('click', function(e){
-    localStorage.clear();
+  clearLocalStorageAfterSubmitOfTheForm();
 });
 
 // Récupération des informations du localStorage.
@@ -118,7 +119,7 @@ document.getElementById('formValidation').addEventListener('click', function(e) 
 });
 
  // ---Envoie de l'objet à l'API---
- const commande= async function(data) {
+ const commande = async function(data) {
   let response = await fetch("http://localhost:3000/api/cameras/order", {
     method:"POST",
     headers: {
