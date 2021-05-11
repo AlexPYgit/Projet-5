@@ -1,6 +1,5 @@
  
- 
- export default function createCardsIndexHtml() { 
+ export function createCardsIndexHtml () { 
     let createCardProductForHtml = document.createElement('div');
     createCardProductForHtml.classList.add('card', 'mb-3');
     createCardProductForHtml.style.width =  "540px";
@@ -24,10 +23,8 @@
     showProductInHtml.appendChild(createCardProductForHtml);
 }
 
-
-
-  export function createCarsProdcutForProduitHtml(){
-    createCardProductForHtml = document.createElement('div');
+   export function createCardsProdcutForProduitHtml() {
+    let createCardProductForHtml = document.createElement('div');
           createCardProductForHtml.classList.add('card', 'mb-3');
           createCardProductForHtml.style.width =  "540px";
           createCardProductForHtml.innerHTML = '<div class="row g-0">\
@@ -49,6 +46,8 @@
           </div>\
           <a  href="" id="addBasket" class="btn btn-primary">Ajouter au panier</a>\
         </div>\ ';
+
+        const showProductInHtml = document.querySelector('.cardProduct');
+        showProductInHtml.appendChild(createCardProductForHtml);
 }
 
-//export default{createCardsIndexHtml,createCarsProdcut }
