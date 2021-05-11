@@ -35,6 +35,7 @@ let personalisationOfProductWithOption;
            image: data.imageUrl,
            produit_id: data._id,
            };
+           
  
          //Si un produit est déjà dans le panier
          if(produitInTheBasket){
