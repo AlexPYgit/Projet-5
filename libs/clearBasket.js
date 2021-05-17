@@ -1,6 +1,8 @@
 
-  export default function clearLocalStorageAfterSubmitOfTheForm (){
-    localStorage.clear();
+const clearLocalStorageAfterSubmitOfTheForm = () =>{
+  localStorage.clear();
 };
+
+export {clearLocalStorageAfterSubmitOfTheForm};
 
 

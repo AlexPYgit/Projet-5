@@ -46,4 +46,20 @@ const fillCardPRoductForChoicesOption = (data) => {
 
 }
 
-export {fillCardOfTheProducts,fillCardPRoductForChoicesOption};
+//Rempli les card de la page Basket
+const fillCardBasket = (valueObjectProduit) => {
+   let compteurNombreDeCard = 0;
+   valueObjectProduit.forEach(element => {
+    let titleCard = document.querySelectorAll("#title");
+    let textCard = document.querySelectorAll('#description');
+    let priceCard = document.querySelectorAll('#price');
+    let image = document.querySelectorAll('#image');
+    
+    titleCard[compteurNombreDeCard].innerHTML = valueObjectProduit[compteurNombreDeCard].name;
+    priceCard[compteurNombreDeCard].innerHTML = valueObjectProduit[compteurNombreDeCard].price + '€';
+    image[compteurNombreDeCard].src = valueObjectProduit[compteurNombreDeCard].image;
+    compteurNombreDeCard++;
+   });
+  };
+
+export {fillCardOfTheProducts,fillCardPRoductForChoicesOption,fillCardBasket};

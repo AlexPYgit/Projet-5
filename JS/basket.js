@@ -1,6 +1,9 @@
 
 //---------------------------------------PARTIE CREATION DE LA PAGE PANIER---------------------------//
-import clearLocalStorageAfterSubmitOfTheForm from './libs/clearBasket.js';
+import {clearLocalStorageAfterSubmitOfTheForm} from '/libs/clearBasket.js';
+import {cardProductInTheBasket} from '/libs/createCard.js';
+import {fillCardBasket} from '/libs/fillCardProduct.js';
+import {priceAllBasket} from '/libs/priceTotalBasket.js';
 
 // ------------------------VIDER LE PANIER---------------------------
 // vider le panier et recharger
@@ -10,10 +13,9 @@ clearBasket.addEventListener('click', function(e){
 });
 
 // Récupération des informations du localStorage.
-let valueObjectProduit ={};
+let valueObjectProduit =[];
 valueObjectProduit= JSON.parse(localStorage.getItem("commande"));
 let compteurNombreDeCard = 0;
-let totalPrice = 0;
 let products = [];
 
 // Boucle pour créer les cards des produits sélectionnés
@@ -29,58 +31,27 @@ const showProduct = document.querySelector('.cardProduct');
     clearBasket.classList.add('invisible');
 }
 
+// -----Fonction création des cards------
+cardProductInTheBasket(valueObjectProduit);
+// function de remplissage des card du panier
+fillCardBasket(valueObjectProduit);
+priceAllBasket(valueObjectProduit);
+
+
 // -----Boucle pour créer le nombre de cards necessaire----
 for(let i =0; i <valueObjectProduit.length; i++){
-     product();
-     fillCardBasket();
-     priceAllBasket();
      products.push(valueObjectProduit[i].produit_id);
     compteurNombreDeCard++;
 };
-// -----Fonction création des cards------
-function product (){
-  let newName = document.createElement('div');
-        newName.classList.add('card', 'mb-3');
-        newName.style.width =  "300px";
-        newName.innerHTML = '<div class="row g-0">\
-          <div class="col-md-4">\
-            <img class="rounded mx-auto d-block" style="width: 100%;" src="" id="image"></img>\
-          </div>\
-          <div class="col-md-8">\
-            <div class="card-body">\
-              <h5 id="title" class="card-title"></h5>\
-              <p id="description" class="card-text"></p>\
-              <p id="price" class="card-text" ></p>\
-              <div id="option"></div>\
-            </div>\
-          </div>\
-        </div>\
-      </div>\ ';
-      
-  // -----création de card dans le html-----
-  showProduct.appendChild(newName);
-};  
 
-// function de remplissage des card du panier
-function fillCardBasket(){
-//Ajout des infos dans le cards
-let titleCard = document.querySelectorAll("#title");
-let textCard = document.querySelectorAll('#description');
-let priceCard = document.querySelectorAll('#price');
-let image = document.querySelectorAll('#image');
 
-titleCard[compteurNombreDeCard].innerHTML = valueObjectProduit[compteurNombreDeCard].name;
-textCard[compteurNombreDeCard].innerHTML = valueObjectProduit[compteurNombreDeCard].option;
-priceCard[compteurNombreDeCard].innerHTML = valueObjectProduit[compteurNombreDeCard].price + '€';
-image[compteurNombreDeCard].src = valueObjectProduit[compteurNombreDeCard].image;
-}
 
 //Affichage du prix du panier
-function priceAllBasket(){
-  let priceBasket = document.getElementById('priceBasket');
-  totalPrice += valueObjectProduit[compteurNombreDeCard].price;
-  priceBasket.innerHTML = 'Prix :' + totalPrice + '€';
-}
+// function priceAllBasket(){
+//   let priceBasket = document.getElementById('priceBasket');
+//   totalPrice += valueObjectProduit[compteurNombreDeCard].price;
+//   priceBasket.innerHTML = 'Prix :' + totalPrice + '€';
+// }
 
 // ----------------------------------------------PARTIE POST SUR API------------------------------------//
 
@@ -131,7 +102,6 @@ document.getElementById('formValidation').addEventListener('click', function(e) 
    if(response.ok){
      let res = await response.json();
      console.log(res.orderId)
-     console.log(totalPrice)
 
      callCommandeUser(res);
 
