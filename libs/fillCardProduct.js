@@ -39,7 +39,7 @@ const fillCardPRoductForChoicesOption = (data) => {
           choices.innerHTML = '<option class=\'choice\' value="" ></option>\ ';
           showTheOption.appendChild(choices);
           let option = document.querySelectorAll('.choice');
-          option[nomberOfOption].innerHTML = lenses[nomberOfOption];
+          option[nomberOfOption].innerHTML = lenses[nomberOfOption];         
 
           nomberOfOption++
         }

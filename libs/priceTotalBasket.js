@@ -1,16 +1,13 @@
-const priceAllBasket = (valueObjectProduit) =>{
+
+const priceAllBasket = (valueObjectProduit) => {
+  return valueObjectProduit
+     .reduce((addPrice,priceProduct) => addPrice + priceProduct.price,0)
+  };
+
+  const insertPriceInTheDOM = (valueObjectProduit) => {
+  let totalPrice =  priceAllBasket(valueObjectProduit);
     let priceBasket = document.getElementById('priceBasket');
-    for( let prce in valueObjectProduit ){
-      price += valueObjectProduit.price;
-  
-  };
-  console.log(valueObjectProduit.price);
+    priceBasket.innerHTML = 'Prix :' + totalPrice + '€';
+  }
 
-
-    // totalPrice = valueObjectProduit.forEach(totalPrice => {
-    //     return totalPrice += valueObjectProduit.price;
-    // });
-    // priceBasket.innerHTML = 'Prix :' + totalPrice + '€';
-  };
-
-export {priceAllBasket};
+ export {priceAllBasket,insertPriceInTheDOM};
