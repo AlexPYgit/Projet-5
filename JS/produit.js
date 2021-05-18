@@ -2,14 +2,13 @@
 import {getApi} from '/libs/FetchApi.js';
 import {url} from '/libs/UrlFetch.js';
 import {createCardsProdcutForProduitHtml} from '../libs/createCard.js';
-import {fillCardPRoductForChoicesOption} from '/libs/fillCardProduct.js'; 
 import {pushTheProductInTheLocalStorage} from '/libs/pushTheProduct.js'
 
 let idProduit = window.location.search.slice(1);
 //Requete API et création de la carte produit
 const arrayDataFromApiOfProduct = await getApi(`${url}`+ idProduit);
-createCardsProdcutForProduitHtml();
-fillCardPRoductForChoicesOption(arrayDataFromApiOfProduct);
+createCardsProdcutForProduitHtml(arrayDataFromApiOfProduct);
+
 
 //  Choix de personalisation
 const  personalisationOption =  document.getElementById('formreq')
@@ -26,4 +25,3 @@ addBasket.addEventListener('click', function (e){
     pushTheProductInTheLocalStorage (arrayDataFromApiOfProduct,produitInTheBasket);
     e.preventDefault();
 });
-

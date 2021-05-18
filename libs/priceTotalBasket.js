@@ -1,13 +1,10 @@
 
-const priceAllBasket = (valueObjectProduit) => {
-  return valueObjectProduit
-     .reduce((addPrice,priceProduct) => addPrice + priceProduct.price,0)
-  };
-
   const insertPriceInTheDOM = (valueObjectProduit) => {
-  let totalPrice =  priceAllBasket(valueObjectProduit);
+  let totalPrice =  valueObjectProduit.reduce((addPrice,priceProduct) => addPrice + priceProduct.price,0);
     let priceBasket = document.getElementById('priceBasket');
     priceBasket.innerHTML = 'Prix :' + totalPrice + '€';
+    return totalPrice
   }
+ 
 
- export {priceAllBasket,insertPriceInTheDOM};
+ export {insertPriceInTheDOM};

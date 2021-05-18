@@ -1,3 +1,7 @@
+import {fillCardBasket} from '/libs/fillCardProduct.js';
+import {fillCardPRoductForChoicesOption} from '/libs/fillCardProduct.js'; 
+
+
 // card pour Page Index
 const createCardsIndexHtml = (arrayData) => {
       arrayData.forEach(element => {
@@ -25,7 +29,7 @@ const createCardsIndexHtml = (arrayData) => {
 }
 
 //card pour Page Produit
-const createCardsProdcutForProduitHtml = () => {
+const createCardsProdcutForProduitHtml = (arrayDataFromApiOfProduct) => {
 
     const showProductInHtml = document.querySelector('.cardProduct');
     let createCardProductForHtml = document.createElement('div');
@@ -53,7 +57,8 @@ const createCardsProdcutForProduitHtml = () => {
   </div>\ ';
 
   showProductInHtml.appendChild(createCardProductForHtml);
-
+  //création des cartes dans la page produits;
+  fillCardPRoductForChoicesOption(arrayDataFromApiOfProduct);
 }
 
 //card pour page Basket
@@ -81,6 +86,8 @@ const cardProductInTheBasket = (valueObjectProduit) => {
   // -----création de card dans le html-----
   showProduct.appendChild(newName);
   }); 
+  //création de la carte dans la page panier
+  fillCardBasket(valueObjectProduit);
 };
 
 export {createCardsIndexHtml,createCardsProdcutForProduitHtml,cardProductInTheBasket};

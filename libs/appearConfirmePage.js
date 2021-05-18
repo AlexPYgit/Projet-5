@@ -1,10 +1,10 @@
-import {priceAllBasket} from '/libs/priceTotalBasket.js';
+import {insertPriceInTheDOM} from '/libs/priceTotalBasket.js';
 
-const appearConfirmePage = (res,valueObjectProduit ) => {
+const appearConfirmePage = (getDataApiAfterPost,valueObjectProduit ) => {
     let commandeUser = {
-        lasttName : res.contact.lasttName,
-        idCommande : res.orderId,
-        priceBasket: priceAllBasket(valueObjectProduit),
+        lasttName : getDataApiAfterPost.contact.lasttName,
+        idCommande : getDataApiAfterPost.orderId,
+        priceBasket: insertPriceInTheDOM(valueObjectProduit),
     };
     localStorage.setItem('commande',JSON.stringify(commandeUser)); 
 };
