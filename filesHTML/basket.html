@@ -53,10 +53,10 @@
 
     <!-- Form -->
     <div class="container mt-3 bg-dark ">
-      <form id="formValidation" class="row-6 g-3 needs-validation" novalidate>
+      <form id="formValidation" class="row-6 g-3 needs-validation was-validated" novalidate >
         <div class="col-md-4 position-relative">
           <label for="validationTooltip01" class="form-label text-white">First name</label>
-          <input type="text" class="form-control" id="validationTooltip01" value="OTTO" required>
+          <input type="text" class="form-control" id="validationTooltip01" required>
           <div class="valid-tooltip">
             Looks good!
           </div>
@@ -100,11 +100,12 @@
           </div>
         </div>
         <div class="col-12">
-          <a id="confirmation" href="" class="btn btn-primary m-2" type="submit">Commander</a>
+          <div class="btn btn-primary m-2 " id='confirm-comande'>Confirmer votre commande</div>
+          <a id="confirmation" href="" class="btn btn-primary m-2 invisible" type="submit">Commander</a>
         </div>
       </form>
   </div>
-      
+  
    
       <!-- Script du fichier JS -->
   <script type="module" src="/JS/basket.js"></script>

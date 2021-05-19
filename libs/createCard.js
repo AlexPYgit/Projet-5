@@ -1,5 +1,6 @@
 import {fillCardBasket} from '/libs/fillCardProduct.js';
 import {fillCardPRoductForChoicesOption} from '/libs/fillCardProduct.js'; 
+import {fillCardOfTheProducts} from '/libs/fillCardProduct.js';
 
 
 // card pour Page Index
@@ -26,6 +27,7 @@ const createCardsIndexHtml = (arrayData) => {
     
     showProductInHtml.appendChild(createCardProductForHtml);
       });
+      fillCardOfTheProducts(arrayData);
 }
 
 //card pour Page Produit
@@ -63,6 +65,7 @@ const createCardsProdcutForProduitHtml = (arrayDataFromApiOfProduct) => {
 
 //card pour page Basket
 const cardProductInTheBasket = (valueObjectProduit) => {
+   if(valueObjectProduit){
   const showProduct = document.querySelector('.cardProduct');
   valueObjectProduit.forEach( element => {
   let newName = document.createElement('div');
@@ -88,6 +91,7 @@ const cardProductInTheBasket = (valueObjectProduit) => {
   }); 
   //création de la carte dans la page panier
   fillCardBasket(valueObjectProduit);
+   } 
 };
 
 export {createCardsIndexHtml,createCardsProdcutForProduitHtml,cardProductInTheBasket};

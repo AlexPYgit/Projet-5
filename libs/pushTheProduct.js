@@ -3,7 +3,6 @@ const pushTheProductInTheLocalStorage = (data, produitInTheBasket) => {
     let objectProduit = {
     name : data.name,
     price: (data.price/100),
-    // option: personalisationOfProductWithOption,
     image: data.imageUrl,
     produit_id: data._id,
     };
