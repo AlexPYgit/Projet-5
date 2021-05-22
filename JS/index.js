@@ -7,8 +7,3 @@ import {createCardsIndexHtml} from '/libs/createCard.js';
 const arrayDataFromApi = await getApi(`${url}`);
 //création des cards HTML dans le DOM
 createCardsIndexHtml(arrayDataFromApi);
-
-
-
-  
-  
