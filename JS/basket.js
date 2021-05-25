@@ -5,28 +5,28 @@ import {submitCommandeUser} from '/libs/submitCommandeUser.js';
 import {displayIfBasketEmpty} from '/libs/displayIfBasketEmpty.js';
 import {confirmFormUser} from '/libs/validationForm.js';
 
-// ------------------------VIDER LE PANIER---------------------------
-// vider le panier et recharger
+// ------------------------clear Basket---------------------------
+// clean the basket and refresh 
  document.getElementById('clearBasket').addEventListener('click', function(e){
   clearLocalStorageAfterSubmitOfTheForm();});
 
-// Récupération des informations du localStorage.
+// get data of the localstorage 
 let valueObjectProduit =[];
 valueObjectProduit= JSON.parse(localStorage.getItem("commande"));
 
-  //---- Affichage si panier vide----
+  //---- show if basket is empty ----
   if(localStorage.length == 0){
     displayIfBasketEmpty();
 }
 
-// -----Fonction création des cards------
+// ----- function create the cards ------
 cardProductInTheBasket(valueObjectProduit);
 insertPriceInTheDOM(valueObjectProduit);
 
-////confirmation data user
+////user data  confirmation 
  confirmFormUser();
-// ----------------------------------------------PARTIE POST SUR API------------------------------------//
-// -------Envoie du formulaire et redirection vers la page de confirmation-------
+// ----------------------------------------------section POST on API------------------------------------//
+// ------- Send formular and redirect to the confirmation page  -------
 document.getElementById('formValidation').addEventListener('click', function() {
   let confirmation = document.getElementById('confirmation');
   confirmation.href = 'confirmation.html';

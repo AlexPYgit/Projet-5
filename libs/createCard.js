@@ -3,7 +3,7 @@ import {fillCardPRoductForChoicesOption} from '/libs/fillCardProduct.js';
 import {fillCardOfTheProducts} from '/libs/fillCardProduct.js';
 
 
-// card pour Page Index
+// card for index page
 const createCardsIndexHtml = (arrayData) => {
       arrayData.forEach(element => {
       const showProductInHtml = document.querySelector('.cardProduct');
@@ -30,7 +30,7 @@ const createCardsIndexHtml = (arrayData) => {
       fillCardOfTheProducts(arrayData);
 }
 
-//card pour Page Produit
+//card for product page 
 const createCardsProdcutForProduitHtml = (arrayDataFromApiOfProduct) => {
 
     const showProductInHtml = document.querySelector('.cardProduct');
@@ -59,11 +59,11 @@ const createCardsProdcutForProduitHtml = (arrayDataFromApiOfProduct) => {
   </div>\ ';
 
   showProductInHtml.appendChild(createCardProductForHtml);
-  //création des cartes dans la page produits;
+  // create cards in the product page
   fillCardPRoductForChoicesOption(arrayDataFromApiOfProduct);
 }
 
-//card pour page Basket
+//card for Basket page
 const cardProductInTheBasket = (valueObjectProduit) => {
    if(valueObjectProduit){
   const showProduct = document.querySelector('.cardProduct');
@@ -86,10 +86,10 @@ const cardProductInTheBasket = (valueObjectProduit) => {
         </div>\
       </div>\ ';
       
-  // -----création de card dans le html-----
+  // -----create card in the html-----
   showProduct.appendChild(newName);
   }); 
-  //création de la carte dans la page panier
+  //  create card in the basket page 
   fillCardBasket(valueObjectProduit);
    } 
 };

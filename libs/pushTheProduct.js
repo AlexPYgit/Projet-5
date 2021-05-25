@@ -7,12 +7,12 @@ const pushTheProductInTheLocalStorage = (data, produitInTheBasket) => {
     produit_id: data._id,
     };
 
-    //Si un produit est déjà dans le panier
+    // if one product is already in the basket
     if(produitInTheBasket){
     produitInTheBasket.push(objectProduit);
     localStorage.setItem("commande", JSON.stringify(produitInTheBasket));
 
-    //si le produit n'est pas dans le panier
+    // if the product is not in the basket 
     } else {
     produitInTheBasket =[];
     produitInTheBasket.push(objectProduit);

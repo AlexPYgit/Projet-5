@@ -1,5 +1,5 @@
 
-//rempli les cards page index
+//filled the cards in the index page 
 const fillCardOfTheProducts = (product)=> {
   let counterOfCardProduct = 0;
   product.forEach(element => {
@@ -18,7 +18,7 @@ const fillCardOfTheProducts = (product)=> {
   })
 }
 
-//rempli les cards page produit
+//filled the cards in the product page 
 const fillCardPRoductForChoicesOption = (data) => {
       let lenses = document.getElementById('showTheOption');
       let titleCard = document.querySelector("#title");
@@ -32,7 +32,7 @@ const fillCardPRoductForChoicesOption = (data) => {
       image.src = data.imageUrl;
       lenses = data.lenses;
 
-      // Boucle for qui ajoute le nombre d'option disponible
+      // loop for that add the option 
         let nomberOfOption = 0;
         for(let choices in data.lenses){
           choices = document.createElement('option');
@@ -46,7 +46,7 @@ const fillCardPRoductForChoicesOption = (data) => {
 
 }
 
-//Rempli les card de la page Basket
+//filled the cards in the basket page 
 const fillCardBasket = (valueObjectProduit) => {
    let compteurNombreDeCard = 0;
    valueObjectProduit.forEach(element => {

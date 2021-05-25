@@ -3,7 +3,7 @@ import {getApi} from '/libs/FetchApi.js';
 import {url} from '/libs/UrlFetch.js';
 import {createCardsIndexHtml} from '/libs/createCard.js';
 
-//récuperation des informations de l'API
+// get data of the API
 const arrayDataFromApi = await getApi(`${url}`);
-//création des cards HTML dans le DOM
+//créate card in the DOM 
 createCardsIndexHtml(arrayDataFromApi);
