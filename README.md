@@ -8,7 +8,6 @@ launch the server in the files root with the consol "cmd" of your computer with 
 # control methode post#
 for the method "post" on the API. Vérificate that the object match at the object required of the API. 
 
-
 # description of the object at send for good reponse of the API # 
 
 <!-- this is object  at stringnify for send at the API 
@@ -24,3 +23,5 @@ object : {
     * products: [string] <-- array of product _id
 } 
 -->
+
+# for more information, please check the pdf  documentation from project 5 in the file #

@@ -23,11 +23,11 @@ const construcorOfObjetcForPostApi = () => {
       return contact
 };
 
-const objetcPostApi = (valueObjectProduit) => {
+const objectPostApi = (valueObjectProduit) => {
     let data = {};
     data.contact = construcorOfObjetcForPostApi();
     data.products = getIdProductForPostApi(valueObjectProduit);
     return data
 };
 
-export {objetcPostApi};
+export {objectPostApi};

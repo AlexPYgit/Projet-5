@@ -1,5 +1,5 @@
 import {appearConfirmePage} from '/libs/appearConfirmePage.js';
-import {objetcPostApi} from '/libs/construcorOfObjetcForPostApi.js';
+import {objectPostApi} from '/libs/constructorOfObjetcForPostApi.js';
 import {url} from '/libs/UrlFetch.js';
 
 
@@ -10,7 +10,7 @@ const submitCommandeUser = async (valueObjectProduit) => {
           "Content-type": "application/json",
           "Accept" : 'application/json'
         },
-        body: JSON.stringify(objetcPostApi(valueObjectProduit)),
+        body: JSON.stringify(objectPostApi(valueObjectProduit)),
       })
        if(responseApiAfterPost.ok){
          let getDataApiAfterPost = await responseApiAfterPost.json();
