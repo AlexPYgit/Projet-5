@@ -1,6 +1,6 @@
 import {getIdProductForPostApi} from '/libs/getIdProductForPostApi.js';
 
-const construcorOfObjetcForPostApi = () => {
+const constructorOfObjetcForPostApi = () => {
     let contact = { 
         firstName: '',
         lastName:'',
@@ -25,7 +25,7 @@ const construcorOfObjetcForPostApi = () => {
 
 const objectPostApi = (valueObjectProduit) => {
     let data = {};
-    data.contact = construcorOfObjetcForPostApi();
+    data.contact = constructorOfObjetcForPostApi();
     data.products = getIdProductForPostApi(valueObjectProduit);
     return data
 };

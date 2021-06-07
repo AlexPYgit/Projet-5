@@ -57,7 +57,7 @@ exports.orderCameras = (req, res, next) => {
     return res.status(400).send(new Error('Bad request!'));
   }
   let queries = [];
-  for (let productId of req.body.products) {
+  for (let productId of req.body.products) {  
     const queryPromise = new Promise((resolve, reject) => {
       Camera.findById(productId).then(
         (camera) => {
