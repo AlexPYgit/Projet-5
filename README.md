@@ -4,6 +4,9 @@ This is the MVP of site e-commerce for the project 5.
 
 # Get start #
 Clone this repository in your file.
+
+Launch the live server with your edit code for the html file rending.
+
 launch the server in the files root with the consol "cmd" of your computer with the command "node server.js" before try the website.
 
 # control methode post#
